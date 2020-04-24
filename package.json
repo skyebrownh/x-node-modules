@@ -1,0 +1,22 @@
+{
+  "name": "xnm",
+  "version": "1.0.0",
+  "description": "X Node Modules recursively iterates over files directories and deletes node_modules folders to free up space on your computer",
+  "main": "index.js",
+  "bin": {
+    "xnm": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skyebrownh/x-node-modules.git"
+  },
+  "author": "Skye Brown",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skyebrownh/x-node-modules/issues"
+  },
+  "homepage": "https://github.com/skyebrownh/x-node-modules#readme"
+}
