@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/skyebrownh/x-node-modules/issues"
   },
-  "homepage": "https://github.com/skyebrownh/x-node-modules#readme"
+  "homepage": "https://github.com/skyebrownh/x-node-modules#readme",
+  "dependencies": {
+    "rimraf": "^3.0.2"
+  }
 }

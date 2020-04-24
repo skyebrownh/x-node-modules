@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const rimraf = require('rimraf');
 
 const buildTree = startPath => {
   // read directory contents of startPath
@@ -13,7 +14,11 @@ const buildTree = startPath => {
         if (stats.isDirectory()) {
           // base case: delete node_modules
           if (entry === 'node_modules') {
-            console.log(`delete ${newPath}`);
+            rimraf(newPath, err =>
+              console.error(
+                `There was an issue removing the node_modules directory at ${newPath}`
+              )
+            );
           }
           // recursive case: call buildTree on this directory
           else {
@@ -25,4 +30,5 @@ const buildTree = startPath => {
   });
 };
 
-buildTree('/Users/skyebrown/Documents');
+buildTree('/Users/skyebrown/Documents/Projects/Web');
+console.log('Thank you for using XNM!');
