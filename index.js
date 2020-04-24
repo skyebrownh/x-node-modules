@@ -3,6 +3,9 @@ const path = require('path');
 const rimraf = require('rimraf');
 
 const buildTree = startPath => {
+  // array of "failed to remove" paths
+  let notRemoved = [];
+
   // read directory contents of startPath
   fs.readdir(startPath, (err, entries) => {
     // iterate over directory contents of each startPath entry
@@ -14,11 +17,16 @@ const buildTree = startPath => {
         if (stats.isDirectory()) {
           // base case: delete node_modules
           if (entry === 'node_modules') {
-            rimraf(newPath, err =>
+            rimraf(newPath, err => {
+              // show error message to user and mark newPath as notRemoved
               console.error(
                 `There was an issue removing the node_modules directory at ${newPath}`
-              )
-            );
+              );
+              notRemoved.push(newPath);
+            });
+            // show success message to user
+            if (!notRemoved.includes(newPath))
+              console.log(`Successfully deleted: ${newPath}`);
           }
           // recursive case: call buildTree on this directory
           else {
@@ -30,5 +38,5 @@ const buildTree = startPath => {
   });
 };
 
-buildTree('/Users/skyebrown/Documents/Projects/Web');
+buildTree('/Users/skyebrown/Documents');
 console.log('Thank you for using XNM!');
