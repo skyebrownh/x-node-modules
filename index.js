@@ -1,9 +1,25 @@
 #!/usr/bin/env node
 
 const prompts = require('prompts');
+const boxen = require('boxen');
+const chalk = require('chalk');
 const buildTree = require('./lib/buildTree');
 
-console.log("Before we begin, there's a few things we need to know...");
+console.log(
+  boxen('XNM: X Node Modules', {
+    padding: 1,
+    margin: 1,
+    borderColor: 'white',
+    borderStyle: 'doubleSingle',
+    align: 'center',
+    backgroundColor: 'magenta'
+  })
+);
+console.log(
+  chalk.bold.cyanBright(
+    "Before we begin, there's a few things we need to know...\n"
+  )
+);
 
 (async () => {
   // ensure user is in correct root directory
@@ -16,12 +32,13 @@ console.log("Before we begin, there's a few things we need to know...");
 
   if (!res1.isCorrectDir) {
     console.log(
-      'All good! Navigate to your preferred root directory first, then run "xnm" again.'
+      chalk.green(
+        'All good! Navigate to your preferred root directory first, then run "xnm" again.'
+      )
     );
     process.exit(0);
   }
 
-  console.log('Starting deletion process...');
+  console.log(chalk.bold.magentaBright('\nStarting deletion process...'));
   buildTree(process.cwd());
-  console.log('Thank you for using XNM!');
 })();
